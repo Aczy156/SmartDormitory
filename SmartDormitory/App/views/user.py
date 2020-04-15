@@ -1,10 +1,10 @@
 from flask import Flask, Blueprint, render_template, session, redirect, url_for, request, Response
 from App.models import db, User
 
-userblue = Blueprint('userblue', __name__)
+userBlue = Blueprint('userBlue', __name__)
 
 
-@userblue.route('/', methods=['GET', 'POST'])
+@userBlue.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')
@@ -26,31 +26,31 @@ def login():
 
 
 # query
-@userblue.route('/getuser')
+@userBlue.route('/getuser')
 def getuser():
     result = User.query.filter(User.username == 'a').first()
     return result.username
 
 
-@userblue.route('/index')
+@userBlue.route('/index')
 def index():
     return render_template('index.html')
 
 
-@userblue.route('/account')
+@userBlue.route('/account')
 def account():
     return render_template('index.html')
 
 
 # login
-@userblue.route('/logout', methods=['POST', 'GET'])
+@userBlue.route('/logout', methods=['POST', 'GET'])
 def logout():
     session.clear()
     return redirect(url_for('userblue.login'))
 
 
 # register
-@userblue.route('/register', methods=['POST', 'GET'])
+@userBlue.route('/register', methods=['POST', 'GET'])
 def regist():
     user = User()
     user.username = request.form.get('register_username')
@@ -60,11 +60,11 @@ def regist():
     db.session.add(user)
     db.session.commit()
 
-    return redirect(url_for('userblue.login'))
+    return redirect(url_for('userBlue.login'))
 
 
 # select
-@userblue.route('/UserSystem/userInfo', methods=['POST', 'GET'])
+@userBlue.route('/UserSystem/userInfo', methods=['POST', 'GET'])
 def myselect():
     item = session.get('user')
     user = User.query.filter(User.username == item.get("username")).first()
@@ -74,7 +74,7 @@ def myselect():
 # UserInfo
 # GET get info
 # POST change
-@userblue.route('/UserSystem/updateUserInfo', methods=['POST', 'GET'])
+@userBlue.route('/UserSystem/updateUserInfo', methods=['POST', 'GET'])
 def myupdate():
     item = session.get('user')
     user = User.query.filter(User.username == item.get("username")).first()
@@ -91,6 +91,6 @@ def myupdate():
         return render_template('UserSystem/updateUserInfo.html', user=user, message='修改成功')
 
 
-@userblue.route('/DormitorySystem/targets')
+@userBlue.route('/DormitorySystem/targets')
 def targets():
     return render_template('DormitorySystem/dormitoryMainPage.html')

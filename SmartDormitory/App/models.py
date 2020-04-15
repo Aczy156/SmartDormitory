@@ -24,19 +24,27 @@ class User(db.Model):
 
 
 # Dormintory System
-class Room(db.Model):
+class Dormitory(db.Model):
     dormitoryId = db.Column(db.Integer, primary_key=True)
     dormitoryName = db.Column(db.String(100))
     dormitoryNumber = db.Column(db.String(100))
-    docmitoryManager = db.Column(db.String(100))
+    dormitoryManager = db.Column(db.String(100))
+
+    member1 = db.Column(db.String(100))
+    member2 = db.Column(db.String(100))
+    member3 = db.Column(db.String(100))
+    member4 = db.Column(db.String(100))
 
     innerTemperature = db.Column(db.String(100))
     innerHumidity = db.Column(db.String(100))
-    outerTemperature = db.Column(db.String(100))
-    outerHumidity = db.Column(db.String(100))
 
     remainWater = db.Column(db.Integer)
     remainLight = db.Column(db.Integer)
 
-    remainWaterFee = db.Column(db.Integer)
-    remainLightFee = db.Column(db.Integer)
+
+# Camera System
+class Log(db.Model):
+    logId = db.Column(db.Integer, primary_key=True)
+    logTime = db.Column(db.String(100))
+    logPerson = db.Column(db.String(100))
+    isIn = db.Column(db.String(50))
