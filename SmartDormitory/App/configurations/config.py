@@ -9,11 +9,11 @@ def get_db_uri(dbinfo):
     dbname = dbinfo.get("DBNAME") or "SmartDormitory"
     return '{}+{}://{}:{}@{}:{}/{}'.format(engine, driver, user, password, host, port, dbname)
 
+
 class Config:
     DEBUG = False
     TESTING = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
 
 
 # 开发环境
@@ -36,7 +36,6 @@ class DevelopConfig(Config):
 
 # 测试环境
 class TestConfig(Config):
-
     dbinfo = {
         "ENGINE": "mysql",
         "DRIVER": "pymysql",
@@ -52,7 +51,6 @@ class TestConfig(Config):
 
 # 演示环境
 class StageConfig(Config):
-
     dbinfo = {
         "ENGINE": "mysql",
         "DRIVER": "pymysql",
@@ -68,7 +66,6 @@ class StageConfig(Config):
 
 # 线上（生产）环境
 class ProductConfig(Config):
-
     dbinfo = {
         "ENGINE": "mysql",
         "DRIVER": "pymysql",
@@ -80,6 +77,7 @@ class ProductConfig(Config):
     }
 
     SQLALCHEMY_DATABASE_URI = get_db_uri(dbinfo)
+
 
 envs = {
     "develop": DevelopConfig,

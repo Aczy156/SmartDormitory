@@ -4,7 +4,7 @@ from App.models import db, Dormitory
 dormitoryBlue = Blueprint('dormitoryBlue', __name__)
 
 
-@dormitoryBlue.route('/DormitorySystem/dormitoryInfo', methods=['POST', 'GET'])
+@dormitoryBlue.route('/Dormitory/info', methods=['POST', 'GET'])
 def dormitoryInfo():
     # TODO check if has existed => or register dormitory info
     if request.method == 'GET':
@@ -15,13 +15,12 @@ def dormitoryInfo():
     return None
 
 
-@dormitoryBlue.route('/DormitorySystem/dormitoryPayment', methods=['POST', 'GET'])
+@dormitoryBlue.route('/Dormitory/payment', methods=['POST', 'GET'])
 def dormitoryPayment():
     dormitory = Dormitory.query.filter(Dormitory.dormitoryId == session.get('user').get('roomId')).first()
     print(request.method)
     if request.method == 'GET':
         return render_template('DormitorySystem/dormitoryPayment.html', dormitory=dormitory)
-
     else:
         if request.form.get('dormitoryPayment_remainLight') is not None:
             dormitory.remainLight = int(dormitory.remainLight) + int(request.form.get('dormitoryPayment_remainLight'))
@@ -35,7 +34,6 @@ def dormitoryPayment():
         return render_template('DormitorySystem/dormitoryPayment.html', dormitory=dormitory)
 
 
-@dormitoryBlue.route('/DormitorySystem/dormitoryCheck')
+@dormitoryBlue.route('/Dormitory/mainPage')
 def dormitoryCheck():
-    return render_template('DormitorySystem/dormitoryCheck.html')
-
+    return render_template('DormitorySystem/dormitoryMainPage.html')

@@ -64,7 +64,7 @@ def regist():
 
 
 # select
-@userBlue.route('/UserSystem/userInfo', methods=['POST', 'GET'])
+@userBlue.route('/User/info', methods=['POST', 'GET'])
 def myselect():
     item = session.get('user')
     user = User.query.filter(User.username == item.get("username")).first()
@@ -74,7 +74,7 @@ def myselect():
 # UserInfo
 # GET get info
 # POST change
-@userBlue.route('/UserSystem/updateUserInfo', methods=['POST', 'GET'])
+@userBlue.route('/User/updateUserInfo', methods=['POST', 'GET'])
 def myupdate():
     item = session.get('user')
     user = User.query.filter(User.username == item.get("username")).first()
@@ -87,10 +87,4 @@ def myupdate():
         user.introduction = request.form.get('updateUserInfo_introduction')
         db.session.add(user)
         db.session.commit()
-
         return render_template('UserSystem/updateUserInfo.html', user=user, message='修改成功')
-
-
-@userBlue.route('/DormitorySystem/targets')
-def targets():
-    return render_template('DormitorySystem/dormitoryMainPage.html')
