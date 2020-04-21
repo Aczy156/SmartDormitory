@@ -47,4 +47,5 @@ class Log(db.Model):
     logId = db.Column(db.Integer, primary_key=True)
     logTime = db.Column(db.String(100))
     logPerson = db.Column(db.String(100))
+    logSource = db.Column(db.String(200))
     isIn = db.Column(db.String(50))

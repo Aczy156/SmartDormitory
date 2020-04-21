@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import os
 def get_db_uri(dbinfo):
     engine = dbinfo.get("ENGINE") or "mysql"
     driver = dbinfo.get("DRIVER") or "pymysql"
@@ -85,3 +86,8 @@ envs = {
     "product": ProductConfig,
     "default": DevelopConfig
 }
+
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS=(
+#     os.path.join(BASE_DIR,'static'),
+# )

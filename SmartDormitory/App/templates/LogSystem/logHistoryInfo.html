@@ -6,30 +6,35 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/dist/css/bootstrap.min.css') }}">
 </head>
 <body>
-<form action="" method="post">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">宿舍出入历史</h3>
-        </div>
-        <div class="panel-body" style="text-align:center;">
-            <div class="form-horizontal">
-                <table class="table table-bordered table-hover">
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">宿舍出入历史</h3>
+    </div>
+    <div class="panel-body" style="text-align:center;">
+        <div class="form-horizontal">
+            <table class="table table-bordered table-hover">
                 <tr>
                     <th>Id</th>
                     <th>Time</th>
                     <th>Person</th>
+                    <th>查看</th>
                 </tr>
                 {% for log in logList %}
                     <tr>
                         <td>{{ log.logId }}</td>
                         <td>{{ log.logTime }}</td>
                         <td>{{ log.logPerson }}</td>
+                        <td>
+                            <a href="/Log/specificLog?logId={{ log.logId }}" target="menuFrame">查看</a>
+                            {#                            <button href="Log/specificLog" target="menuFrame">查看</button>#}
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
-            </div>
         </div>
     </div>
-</form>
+</div>
+
 </body>
 </html>
