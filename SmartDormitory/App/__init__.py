@@ -11,7 +11,9 @@ from App.views.log import logBlue
 
 def create_app(env):
     app = Flask(__name__)
-    app.config.from_object(envs.get(env))
+
+    # app.config.from_object(envs.get(env))
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@127.0.0.1:3306/SmartDormitory'
 
     app.register_blueprint(userBlue)
     app.register_blueprint(dormitoryBlue)

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/dist/css/bootstrap.min.css') }}">
+    <script src="/static/echarts/echarts.js"></script>
+</head>
+<body>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">宿舍门控记录</h3>
+    </div>
+    <div class="panel-body" style="text-align:center;">
+        <div class="form-horizontal">
+            <div id="main" style="width: 1100px;height:600px;"></div>
+            <script type="text/javascript">
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+
+                // 指定图表的配置项和数据
+                option = {
+                    title: {
+                        text: '过去的13个小时进出门及关门次数',
+                        subtext: '时间粒度：1h'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['进门次数', '进门关门次数', '出门次数', '出门关门次数']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            dataZoom: {
+                                yAxisIndex: 'none'
+                            },
+                            dataView: {readOnly: false},
+                            magicType: {type: ['line', 'bar']},
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['10-11', '11-12', '12-13', '13-14', '14-15', '15-16', '16-17', '17-18', '18-19', '19-20', '20-21', '21-22', '22-23']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    },
+                    series: [
+                        {
+                            name: '进门次数',
+                            type: 'line',
+                            data: [13, 23, 31, 34, 8, 13, 15, 34, 45, 23, 26, 34, 14],
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '进门次数最大值'},
+                                    {type: 'min', name: '进门次数最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '进门次数平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name: '进门关门次数',
+                            type: 'line',
+                            data: [9, 18, 23, 25, 3, 7, 11, 30, 32, 19, 20, 32, 13],
+                            markPoint: {
+                                data: [
+                                    {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '进门关门次数平均值'},
+                                    [{
+                                        symbol: 'none',
+                                        x: '90%',
+                                        yAxis: 'max'
+                                    }, {
+                                        symbol: 'circle',
+                                        label: {
+                                            position: 'start',
+                                            formatter: '进门关门次数最大值'
+                                        },
+                                        type: 'max',
+                                        name: '最高点'
+                                    }]
+                                ]
+                            }
+                        },
+                        {
+                            name: '出门次数',
+                            type: 'line',
+                            data: [11, 23, 34, 40, 8, 13, 12, 34, 44, 23, 24, 33, 12],
+                            markPoint: {
+                                data: [
+                                    {type: 'max', name: '出门次数最大值'},
+                                    {type: 'min', name: '出门次数最小值'}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '出门次数平均值'}
+                                ]
+                            }
+                        },
+                        {
+                            name: '出门关门次数',
+                            type: 'line',
+                            data: [5, 17, 29, 29, 4, 6, 7, 28, 43, 21, 21, 19, 8],
+                            markPoint: {
+                                data: [
+                                    {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                                ]
+                            },
+                            markLine: {
+                                data: [
+                                    {type: 'average', name: '出门关门次数平均值'},
+                                    [{
+                                        symbol: 'none',
+                                        x: '90%',
+                                        yAxis: 'max'
+                                    }, {
+                                        symbol: 'circle',
+                                        label: {
+                                            position: 'start',
+                                            formatter: '出门关门次数最大值'
+                                        },
+                                        type: 'max',
+                                        name: '最高点'
+                                    }]
+                                ]
+                            }
+                        }
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

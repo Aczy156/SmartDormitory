@@ -22,10 +22,16 @@ def specificLog():
     logId = request.args['logId']
     print(logId)
     # logId = request.GET.get
-    return render_template('/LogSystem/retrievalSpecificLog.html', logId=logId)
+    loglist = Log.query.filter(Log.logId == logId)
+    return render_template('/LogSystem/retrievalSpecificLog.html', logId=logId, logList=loglist)
 
 
 @logBlue.route('/Log/returnLogList', methods=['POST', 'GET'])
 def returnLogList():
     logList = Log.query.filter(Log.isIn == 'True').all()
     return render_template('/LogSystem/logHistoryInfo.html', logList=logList)
+
+
+@logBlue.route('/Log/dourEchart', methods=['POST', 'GET'])
+def EchartDiagram():
+    return render_template('/LogSystem/EchartDiagram.html')
