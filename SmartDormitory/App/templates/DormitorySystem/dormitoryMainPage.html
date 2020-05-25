@@ -1,12 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='bootstrap/dist/css/bootstrap.min.css') }}">
+    <script src="/static/echarts/echarts.js"></script>
 </head>
 <body>
-<a>
-    dormitory mainpage
-</a>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">宿舍信息</h3>
+    </div>
+    <div class="panel-body">
+        <div id="main" style="width: 1100px;height:325px;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            option = {
+                title: {
+                    text: '温度变化',
+                    subtext: '5.12日'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['温度']
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23',]
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} °C'
+                    }
+                },
+                series: [
+                    {
+                        name: '温度',
+                        type: 'line',
+                        data: [6, 5, 4, 7, 8, 9, 10, 11, 10, 11, 12, 12, 12.5, 14, 15, 14, 14.5, 13, 13, 12, 11, 9, 9, 7, 6],
+                        smooth: true,
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+
+        <div id="main1" style="width: 1100px;height:325px;"></div>
+        <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main1'));
+
+            // 指定图表的配置项和数据
+            option = {
+                title: {
+                    text: '湿度变化',
+                    subtext: '5.12日'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['湿度']
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23',]
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} %'
+                    }
+                },
+                series: [
+                    {
+                        name: '湿度',
+                        type: 'line',
+                        data: [60, 78, 82, 84, 91, 90, 88, 87, 86, 81, 78, 72, 71, 64, 61, 54, 54.5, 53, 53, 52, 61, 59, 63, 65, 66],
+                        smooth: true,
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
+                    }
+                ]
+            };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        </script>
+    </div>
+</div>
 </body>
 </html>
-
