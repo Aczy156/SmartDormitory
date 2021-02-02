@@ -7,7 +7,7 @@ astroid==2.3.3
 attrs==19.3.0
 backcall==0.1.0
 backend==0.2.4.1
-bleach==3.1.0
+bleach==3.3.0
 blinker==1.4
 boto==2.49.0
 boto3==1.10.46
